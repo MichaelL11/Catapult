@@ -6,14 +6,21 @@ app = Flask(__name__)
 def start():
     return render_template("homepage.html")
 
+@app.route("/login.html")
+def start_login():
+    return render_template("login.html")
 
-@app.route("/h.html")
-def start_h():
-    return render_template("homepage.html")
+@app.route("/resources.html")
+def start_Resources():
+    return render_template("Resources.html")
 
-@app.route("/resources.html") 
-def start_recourses():
-    return render_template("resources.html")
+@app.route("/admin.html")
+def start_admin():
+    return render_template("admin.html")
+
+@app.route("/activities.html")
+def start_activities():
+    return render_template("activities.html")
 
 @app.route("/about.html") 
 def start_about():
@@ -22,7 +29,6 @@ def start_about():
 @app.route("/nodes.html") 
 def start_nodes():
     return render_template("nodes.html")
-
 
 
 """
@@ -38,9 +44,5 @@ def mood_io():
         return "<p>Hello, World!</p>"
 """
 
-
-def inc(x): 
-    x += 1 
-    return x 
 
 
