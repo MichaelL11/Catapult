@@ -15,6 +15,7 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="activities.html">Activities</a></li>
                 <li><a href="resources.html">Resources</a></li>
+
             </ul>
         </nav>
     </header>
@@ -29,7 +30,14 @@
                 <li>Discover ways to create an emotionally supportive environment for children to thrive.</li>
             </ul>
         </div>
-        <button id="startRecording">Start Recording</button> <!-- Added button to trigger webcam recording -->
+        <button id="startRecordingButton" onclick="redirectToMediaDevicesPage()">Start Recording</button>
+    
+    <script>
+        // JavaScript function to redirect to mediadevices.html
+        function redirectToMediaDevicesPage() {
+            window.location.href = "mediadevices.html";
+        }
+    </script>
         <div id="videoContainer"> <!-- Added container for video element -->
             <video id="videoElement" autoplay></video> <!-- Video element for displaying webcam feed -->
             <div id="emotionResults"></div> <!-- Container for displaying emotion analysis results -->
