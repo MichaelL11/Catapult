@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Learning Module</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Math Learning Module</h1>
+        <div id="problem"></div>
+        <input type="text" id="answer" placeholder="Enter your answer">
+        <button onclick="checkAnswer()">Submit Answer</button>
+        <div id="feedback"></div>
+    </div>
+
+    <script>
+        const mathProblems = [
+            { question: "5 + 3 =", answer: "8" },
+            { question: "10 - 4 =", answer: "6" },
+            { question: "½ of 8 =", answer: "4" },
+            { question: "24 + 17 =", answer: "41" },
+            { question: "58 - 23 =", answer: "35" },
+            { question: "7 x 8 =", answer: "56" },
+            { question: "15 ÷ 4 =", answer: "3.75" },
+            { question: "If there are 20 cookies in a jar and 5 people all want an equal amount, how many would they each get?", answer: "4" }
+        ];
+
+        let currentProblemIndex = 0;
+
+        function displayProblem() {
+            const problemElement = document.getElementById("problem");
+            problemElement.textContent = mathProblems[currentProblemIndex].question;
+        }
+
+        function checkAnswer() {
+            const answerElement = document.getElementById("answer");
+            const feedbackElement = document.getElementById("feedback");
+            const userAnswer = answerElement.value.trim();
+
+            if (userAnswer === mathProblems[currentProblemIndex].answer) {
+                feedbackElement.textContent = "Correct!";
+            } else {
+                feedbackElement.textContent = "Incorrect. Try again.";
+            }
+
+            // Move to the next problem or end if all problems are solved
+            currentProblemIndex++;
+            if (currentProblemIndex < mathProblems.length) {
+                displayProblem();
+                answerElement.value = ""; // Clear the input field for the next question
+            } else {
+                // All problems solved, show completion message
+                feedbackElement.textContent = "Congratulations! You've completed all math problems.";
+                answerElement.disabled = true; // Disable the input field
+            }
+        }
+
+        // Display the first problem when the page loads
+        window.addEventListener("load", () => {
+            displayProblem();
+        });
+    </script>
+</body>
+</html>
