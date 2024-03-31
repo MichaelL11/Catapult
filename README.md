@@ -12,7 +12,7 @@ We believe our project is scalable and modular, and has great potential.
 
 
 Dependencies
-Flask==3.0.2
+Flask==3.0.2 \n
 opencv_python==4.9.0.80
 Pillow==10.2.0
 torch==2.2.2
