@@ -1,3 +1,4 @@
+
 class MediaDevices extends EventTarget {
     constructor() {
         super();
@@ -29,6 +30,7 @@ const constraints = {
     video: true,
 };
 
+let timerReset = 0
 document.getElementById("startCapture").addEventListener("click", () => {
     mediaDevices.getUserMedia(constraints)
         .then((stream) => {
@@ -42,7 +44,7 @@ document.getElementById("startCapture").addEventListener("click", () => {
 
             // Example: Analyze emotions using your emotion analysis library/API
             // Once emotions are analyzed, display them in the UI
-            const emotions = analyzeEmotionsFromVideoStream(stream);
+            timerReset = setInterval(captureAndUploadImage, 5000);
             displayEmotions(emotions);
         })
         .catch((error) => {
@@ -61,16 +63,46 @@ document.getElementById("stopCapture").addEventListener("click", () => {
         tracks.forEach(track => track.stop());
         video.srcObject = null;
         console.log("Video capture stopped");
+        clearInterval(timerReset);
     }
 });
 
-// Example functions for emotion analysis and displaying results
-function analyzeEmotionsFromVideoStream(stream) {
-    // Implement emotion analysis logic here
-    // Return the analyzed emotions as an object
-}
 
-function displayEmotions(emotions) {
-    // Display the analyzed emotions in the UI
-    emotionResults.innerHTML = JSON.stringify(emotions);
+function captureAndUploadImage() {
+    const video = document.getElementById("videoElement");
+
+    // Create a canvas element to draw the video frame
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // Convert the canvas image to base64 data URL (JPEG format)
+    const imageDataURL = canvas.toDataURL('image/jpeg');
+    
+    // Extract the base64 image data
+    const imageData = imageDataURL.split(',')[1];
+
+    // Send the base64 image data to the server via POST request
+    fetch('http://localhost:5001/admin.html', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ image: imageData }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Image uploaded successfully:', data);
+        // Handle response from server if needed
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }

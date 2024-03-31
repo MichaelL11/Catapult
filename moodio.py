@@ -1,4 +1,4 @@
-from flask import Flask,request,render_template,app
+from flask import Flask,request,render_template,app,send_from_directory,jsonify
 import cv2
 import torch
 import torch.nn as nn
@@ -6,6 +6,8 @@ import torch.nn.functional as F
 from torchvision import transforms
 from PIL import Image
 from deepEmotion import Deep_Emotion_3Classes
+import json,base64,io
+
 #export FLASK_APP=moodio.py
 #flask run --port 5001
 
@@ -17,8 +19,6 @@ def cropFace(img):
     for (x, y, w, h) in faces:
         out=gray[y:y+h, x:x+w]
         break
-    cv2.imshow('crop',out)
-    cv2.waitKey(0)
     return out
 
 
@@ -40,7 +40,7 @@ def getPredict(model,img):
 
 
 #Server Stuff (model stuff ends)
-app = Flask(__name__) 
+app = app = Flask(__name__, static_url_path='/static', static_folder='static')
 
 @app.route("/") 
 def start():
@@ -57,26 +57,38 @@ def start_Resources():
 @app.route("/admin.html", methods=['GET', 'POST'])
 def start_admin():
     if request.method == 'POST':
+        data = request.json
+        # Decode base64-encoded image data
+        image_bytes = base64.b64decode(data["image"])
+    
+
+        # Create PIL Image object from bytes
+        image = Image.open(io.BytesIO(image_bytes))
+        
+        image.save("quickSave.jpg")
         imgPath="quickSave.jpg"
         
         model=Deep_Emotion_3Classes()
         model.load_state_dict(torch.load('model_weights_3class.pth', map_location=torch.device('cpu')))
         model.eval()
-        
+
         img=cv2.imread(imgPath)
         cropped=cropFace(img)
-        out=getPredict(model,cropped)
-        print(out)
-
-
-
-        return 1
+        output=getPredict(model,cropped)
+        outDict={0:1,1:0,2:-1}
+        print(output)
+        return jsonify({'message': 'Image Upload was Success', 'mood_value': output})
     else:
         return render_template("admin.html")
 
 @app.route("/activities.html")
 def start_activities():
     return render_template("activities.html")
+
+
+@app.route("/webcam.js")
+def webcam_js_handler():
+    return send_from_directory('static', 'webcam.js')
 
 @app.route("/about.html") 
 def start_about():
