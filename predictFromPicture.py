@@ -42,7 +42,7 @@ def getPredict(img):
 
 
 if __name__ == "__main__":
-    imgPath="wrong.jpg"
+    imgPath="QuickSave.jpg"
     img = cv2.imread(imgPath)
     try:
         cropped=cropFace(img)

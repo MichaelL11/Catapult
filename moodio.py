@@ -8,6 +8,7 @@ from PIL import Image
 from deepEmotion import Deep_Emotion_3Classes
 import json,base64,io
 
+#commands to run server
 #export FLASK_APP=moodio.py
 #flask run --port 5001
 
@@ -80,8 +81,8 @@ def start_admin():
             print("Face Not Detected (0)")
             return jsonify({'message': 'Image upload was failure', 'mood_value': 0})
         output=getPredict(model,cropped)
-        #outDict={0:1,1:0,2:-1}
         print(output-1)
+        #-1 Happy, 0 Nuetral, 1 Sad
         return jsonify({'message': 'Image Upload was Success', 'mood_value': output-1})
     else:
         return render_template("admin.html")
