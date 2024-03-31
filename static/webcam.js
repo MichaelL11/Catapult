@@ -44,7 +44,7 @@ document.getElementById("startCapture").addEventListener("click", () => {
 
             // Example: Analyze emotions using your emotion analysis library/API
             // Once emotions are analyzed, display them in the UI
-            timerReset = setInterval(captureAndUploadImage, 5000);
+            timerReset = setInterval(captureAndUploadImage, 1000);
             displayEmotions(emotions);
         })
         .catch((error) => {

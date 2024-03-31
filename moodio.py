@@ -16,6 +16,7 @@ def cropFace(img):
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+    out = None
     for (x, y, w, h) in faces:
         out=gray[y:y+h, x:x+w]
         break
@@ -74,10 +75,13 @@ def start_admin():
 
         img=cv2.imread(imgPath)
         cropped=cropFace(img)
+        if cropped is None:
+            print("Face Not Detected (0)")
+            return jsonify({'message': 'Image upload was failure', 'mood_value': 0})
         output=getPredict(model,cropped)
-        outDict={0:1,1:0,2:-1}
-        print(output)
-        return jsonify({'message': 'Image Upload was Success', 'mood_value': output})
+        #outDict={0:1,1:0,2:-1}
+        print(output-1)
+        return jsonify({'message': 'Image Upload was Success', 'mood_value': output-1})
     else:
         return render_template("admin.html")
 
@@ -93,6 +97,10 @@ def webcam_js_handler():
 @app.route("/about.html") 
 def start_about():
     return render_template("about.html")
+
+@app.route("/styles.css") 
+def route_style():
+    return send_from_directory('static', 'style.css')
 
 
 @app.route("/mediadevices.html") 
