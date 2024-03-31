@@ -44,6 +44,7 @@ def getPredict(model,img):
 app = app = Flask(__name__, static_url_path='/static', static_folder='static')
 
 @app.route("/") 
+@app.route("/homepage.html") 
 def start():
     return render_template("homepage.html")
 
