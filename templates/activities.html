@@ -20,6 +20,16 @@
     </header>
 
     <section id="resources">
+        <!-- Div for imaging -->
+        <div class="container">
+            <h1>Webcam Emotion Analysis</h1>
+                <video id="videoElement" autoplay></video>
+                <div id="emotionResults"></div>
+            </div>
+            <button id="startCapture">Start Capture</button>
+            <button id="stopCapture">Stop Capture</button>
+        </div>
+        <!-- Div end -->
         <div class="container">
             <h2>Learning Modules</h2>
             <p>Get started by accessing the content below:</p>
@@ -43,9 +53,11 @@
             <a href="#parents-teachers" class="btn">For Parents & Teachers</a>
         </div>
     </section>
+    
 
     <footer>
         <p>&copy; 2024 EmotiLearnHub. All rights reserved.</p>
     </footer>
+    <script src="webcam.js" defer></script>
 </body>
 </html>
