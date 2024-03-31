@@ -1,4 +1,4 @@
-
+let rsum = 0;
 class MediaDevices extends EventTarget {
     constructor() {
         super();
@@ -100,9 +100,18 @@ function captureAndUploadImage() {
     })
     .then(data => {
         console.log('Image uploaded successfully:', data);
+        rsum += data["mood_value"]
+        setInterval(updateModule(), 300000)
         // Handle response from server if needed
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
     });
+}
+
+function updateModule(){
+
+
+
+    rsum = 0;
 }
