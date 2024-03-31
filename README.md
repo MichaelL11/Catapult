@@ -1,6 +1,6 @@
 # Catapult Project - Emojication
 
-#description of Project
+## description of Project
 The goal of this project was to adjust difficulty of learning based off of facial expressions. Our program looks at the facial expressions of the client, sends that image to the server every second, and our model looks at that image to find out whether the face looks happy, sad, or nuetral. Then, our server sends that back to the client. This is the end to where we got in our implementation, but the goal would be to change the difficulty of the problems for the students based on their mood over time. 
 
 We believe our project is scalable and modular, and has great potential.
@@ -21,7 +21,7 @@ Python==3.11.5
 
 
 
-Run Instructions for proof of concept
+## Run Instructions for proof of concept
 
 Open Terminal in Catapult directory and run the following commands
 
