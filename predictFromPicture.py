@@ -42,8 +42,12 @@ def getPredict(img):
 
 
 if __name__ == "__main__":
-    imgPath="sad.jpg"
+    imgPath="wrong.jpg"
     img = cv2.imread(imgPath)
-    cropped=cropFace(img)
-    out=getPredict(cropped)
+    try:
+        cropped=cropFace(img)
+        out=getPredict(cropped)
+    except:
+        print("Something is wrong")
+        out="Neutral"
     print(out)
