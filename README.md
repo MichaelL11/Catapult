@@ -17,7 +17,7 @@ opencv_python==4.9.0.80 \
 Pillow==10.2.0 \
 torch==2.2.2 \
 torchvision==0.17.2 \
-Python==3.11.5 \
+Python==3.11.5
 
 
 
@@ -28,6 +28,8 @@ Open Terminal in Catapult directory and run the following commands
 1. export FLASK_APP=moodio.py
 2. flask run --port 5001
 3. Finally, connect to host with client.
+
+Make sure to have a working webcam.
 
 
 
