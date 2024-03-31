@@ -111,6 +111,13 @@ function captureAndUploadImage() {
 
 function updateModule(){
 
+    if (rsum > 15) {
+        //Person is sad
+    } else if (rsum > 15) {
+        //Person is happy
+    } else {
+        //Nuetral
+    }
 
 
     rsum = 0;
