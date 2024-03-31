@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Parents & Teachers - EmotiLearnHub</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // JavaScript function to redirect to mediadevices.html
+        function redirectToMediaDevicesPage() {
+            window.location.href = 'mediadevices.html';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>For Parents & Teachers</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="activities.html">Activities</a></li>
+                <li><a href="resources.html">Resources</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section id="parent-teacher-info">
+        <div class="container">
+            <h2>Resources for Supporting Children's Emotional Intelligence</h2>
+            <p>Welcome, parents and teachers! Here you'll find helpful tips, guidance, and resources to support children's emotional intelligence development both at home and in the classroom.</p>
+            <ul>
+                <li>Explore articles, videos, and activities tailored for parents and teachers.</li>
+                <li>Learn strategies for promoting emotional awareness, empathy, and self-regulation in children.</li>
+                <li>Discover ways to create an emotionally supportive environment for children to thrive.</li>
+            </ul>
+        </div>
+        <button id="startRecordingButton" onclick="redirectToMediaDevicesPage()">Start Recording</button>
+    <script>
+            // JavaScript function to redirect to mediadevices.html
+            function redirectToMediaDevicesPage() {
+                window.location.href = "mediadevices.html";
+            }
+        </script>
+            <div id="videoContainer"> <!-- Added container for video element -->
+                <video id="videoElement" autoplay></video> <!-- Video element for displaying webcam feed -->
+                <div id="emotionResults"></div> <!-- Container for displaying emotion analysis results -->
+            </div>
+        </section>
+        <div id="videoContainer"> <!-- Added container for video element -->
+            <video id="videoElement" autoplay></video> <!-- Video element for displaying webcam feed -->
+            <div id="emotionResults"></div> <!-- Container for displaying emotion analysis results -->
+        </div>
+    </section>
+    <section id="additional-resources">
+        <div class="container">
+            <h2>Additional Resources</h2>
+            <p>Below are some additional resources that may be helpful for parents and teachers:</p>
+            <ul>
+                <li><a href="https://www.example-parenting-site.com">Example Parenting Site</a> - Offers articles and tips on parenting and child development.</li>
+                <li><a href="https://www.example-teacher-resources.com">Example Teacher Resources</a> - Provides lesson plans and classroom activities for educators.</li>
+                <!-- Add more resources as needed -->
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 EmotiLearnHub. All rights reserved.</p>
+    </footer>
+
+    <script src="webcam.js"></script>
+
+</body>
+</html>
