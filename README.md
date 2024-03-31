@@ -33,7 +33,7 @@ Open Terminal in Catapult directory and run the following commands
 3. Finally, connect to host with client.
 
 Make sure to have a working webcam.
-
+[set up video tutorial](https://drive.google.com/file/d/12B5v5b5F6V4gqOHZE-qsWLdE4kYXrom9/view)
 
 
 
